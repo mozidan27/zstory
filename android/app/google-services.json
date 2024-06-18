@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "88301373437",
+    "project_id": "zstory-57ab4",
+    "storage_bucket": "zstory-57ab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88301373437:android:de62391ea64f657c6a3b94",
+        "android_client_info": {
+          "package_name": "com.example.zstory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSsd-lS0Mn5mmaItV9hWcFTQFQSC7zp_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

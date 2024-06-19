@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:zstory/auth/auth_gate.dart';
 import 'package:zstory/firebase_options.dart';
-import 'package:zstory/pages/loginOrRegister_page.dart';
 import 'package:zstory/themes/dart_mode.dart';
 import 'package:zstory/themes/light_mode.dart';
 
@@ -17,7 +17,7 @@ class ZStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginOrRegisterPage(),
+      home: const AuthGate(),
       debugShowCheckedModeBanner: false,
       theme: lightMode,
       darkTheme: darkMode,

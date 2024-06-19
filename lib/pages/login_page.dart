@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zstory/auth/auth_services.dart';
+import 'package:zstory/helper/helper_functions.dart';
+import 'package:zstory/services/auth/auth_services.dart';
 import 'package:zstory/widgets/my_button.dart';
 import 'package:zstory/widgets/my_text_field.dart';
 
@@ -14,17 +15,23 @@ class LoginPage extends StatelessWidget {
   void login(BuildContext context) async {
     // auth service
     final authService = AuthService();
+    // show loading cricle
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
     // try login
     try {
       await authService.signInWithEmailPassword(
           _emailController.text, _pWController.text);
+      Navigator.pop(context);
     } catch (e) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(e.toString()),
-        ),
-      );
+      // pop loading circle
+      Navigator.pop(context);
+      // show the error message to user
+      displayMessageToUser(e.toString(), context);
     }
   }
 

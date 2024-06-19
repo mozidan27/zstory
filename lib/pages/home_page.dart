@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zstory/auth/auth_services.dart';
+import 'package:zstory/services/auth/auth_services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

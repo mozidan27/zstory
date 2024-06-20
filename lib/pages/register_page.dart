@@ -4,10 +4,15 @@ import 'package:zstory/services/auth/auth_services.dart';
 import 'package:zstory/widgets/my_button.dart';
 import 'package:zstory/widgets/my_text_field.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterPage({super.key, required this.onTap});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.onTap});
   final void Function()? onTap;
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pWController = TextEditingController();
@@ -49,6 +54,25 @@ class RegisterPage extends StatelessWidget {
         // pop loading cricle
       }
     }
+  }
+
+  // initially hide the password
+
+  bool securePassword = true;
+  bool secureConfirmPassword = true;
+
+  // show and hide the passowrd
+
+  void showOrHidePw() {
+    setState(() {
+      securePassword = !securePassword;
+    });
+  }
+
+  void showOrHideConPW() {
+    setState(() {
+      secureConfirmPassword = !secureConfirmPassword;
+    });
   }
 
   @override
@@ -100,7 +124,22 @@ class RegisterPage extends StatelessWidget {
             MyTextField(
               controller: _pWController,
               hintText: 'Password',
-              obscureText: true,
+              obscureText: securePassword,
+              suffixIcon: securePassword
+                  ? IconButton(
+                      onPressed: showOrHidePw,
+                      icon: Icon(
+                        Icons.visibility,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: showOrHidePw,
+                      icon: Icon(
+                        Icons.visibility_off,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ),
             ),
             const SizedBox(
               height: 10,
@@ -109,7 +148,22 @@ class RegisterPage extends StatelessWidget {
             MyTextField(
               controller: _confirmPWController,
               hintText: 'Confirm Password',
-              obscureText: true,
+              obscureText: secureConfirmPassword,
+              suffixIcon: secureConfirmPassword
+                  ? IconButton(
+                      onPressed: showOrHideConPW,
+                      icon: Icon(
+                        Icons.visibility,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: showOrHideConPW,
+                      icon: Icon(
+                        Icons.visibility_off,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ),
             ),
             const SizedBox(
               height: 15,
@@ -148,7 +202,7 @@ class RegisterPage extends StatelessWidget {
               children: [
                 const Text('Already have an account? '),
                 GestureDetector(
-                  onTap: onTap,
+                  onTap: widget.onTap,
                   child: const Text(
                     'Login now',
                     style: TextStyle(fontWeight: FontWeight.w600),

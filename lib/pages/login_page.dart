@@ -4,14 +4,20 @@ import 'package:zstory/services/auth/auth_services.dart';
 import 'package:zstory/widgets/my_button.dart';
 import 'package:zstory/widgets/my_text_field.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key, required this.onTap});
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _pWController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, required this.onTap});
   final void Function()? onTap;
 
-// login method
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _pWController = TextEditingController();
+
+// login method
   void login(BuildContext context) async {
     // auth service
     final authService = AuthService();
@@ -33,6 +39,18 @@ class LoginPage extends StatelessWidget {
       // show the error message to user
       displayMessageToUser(e.toString(), context);
     }
+  }
+
+  // initially hide the password
+
+  bool securePassword = true;
+
+  // show and hide the passowrd
+
+  void showOrHidePw() {
+    setState(() {
+      securePassword = !securePassword;
+    });
   }
 
   @override
@@ -76,7 +94,22 @@ class LoginPage extends StatelessWidget {
             MyTextField(
               controller: _pWController,
               hintText: 'Password',
-              obscureText: true,
+              obscureText: securePassword,
+              suffixIcon: securePassword
+                  ? IconButton(
+                      onPressed: showOrHidePw,
+                      icon: Icon(
+                        Icons.visibility,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: showOrHidePw,
+                      icon: Icon(
+                        Icons.visibility_off,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ),
             ),
             const SizedBox(
               height: 15,
@@ -115,7 +148,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 const Text('Don\'t have and account? '),
                 GestureDetector(
-                  onTap: onTap,
+                  onTap: widget.onTap,
                   child: const Text(
                     'Register Here',
                     style: TextStyle(fontWeight: FontWeight.w600),

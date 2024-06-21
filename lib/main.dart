@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:zstory/pages/forgot_pw_page.dart';
+import 'package:zstory/pages/home_page.dart';
 import 'package:zstory/services/auth/auth_gate.dart';
 import 'package:zstory/firebase_options.dart';
 import 'package:zstory/themes/dart_mode.dart';
@@ -24,6 +25,7 @@ class ZStory extends StatelessWidget {
       darkTheme: darkMode,
       routes: {
         '/forgot_Pw': (context) => const ForgotPasswordPage(),
+        '/home_page': (context) => const HomePage(),
       },
     );
   }

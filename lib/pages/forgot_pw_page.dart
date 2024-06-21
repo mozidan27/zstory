@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:zstory/helper/helper_functions.dart';
+import 'package:zstory/services/auth/auth_services.dart';
 import 'package:zstory/widgets/my_button.dart';
 import 'package:zstory/widgets/my_text_field.dart';
 
@@ -11,6 +14,31 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  void passwordRest(BuildContext context) async {
+    // auth service
+    final auth = AuthService();
+
+    // try to send the reset link
+    try {
+      await auth.resetPassword(_emailController.text.trim());
+      displayMessageToUser(
+          'Reset link has been sent, Please check your email.', context);
+    } on FirebaseAuthException catch (e) {
+      // Display the specific error message from FirebaseAuthException
+      displayMessageToUser(e.message ?? 'An error occurred.', context);
+    } catch (e) {
+      // Display a generic error message if the error is not a FirebaseAuthException
+      displayMessageToUser('An unknown error occurred.', context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +49,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           // welcome image
           const Center(
             child: Image(
@@ -55,7 +86,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
           MyButton(
             text: 'Reset Password',
-            onTap: () {},
+            onTap: () => passwordRest(context),
           )
         ],
       ),

@@ -5,7 +5,16 @@ void displayMessageToUser(String message, BuildContext context) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(message),
+      title: const Text('Error'),
+      content: Text(message),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('OK'),
+        ),
+      ],
     ),
   );
 }

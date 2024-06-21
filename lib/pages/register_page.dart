@@ -129,15 +129,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   ? IconButton(
                       onPressed: showOrHidePw,
                       icon: Icon(
-                        Icons.visibility,
+                        Icons.visibility_off_outlined,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     )
                   : IconButton(
                       onPressed: showOrHidePw,
-                      icon: Icon(
-                        Icons.visibility_off,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                      icon: const Icon(
+                        Icons.visibility_outlined,
+                        color: Color(0xFF90CAF9),
                       ),
                     ),
             ),
@@ -153,15 +153,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   ? IconButton(
                       onPressed: showOrHideConPW,
                       icon: Icon(
-                        Icons.visibility,
+                        Icons.visibility_off_outlined,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     )
                   : IconButton(
                       onPressed: showOrHideConPW,
-                      icon: Icon(
-                        Icons.visibility_off,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                      icon: const Icon(
+                        Icons.visibility_outlined,
+                        color: Color(0xFF90CAF9),
                       ),
                     ),
             ),

@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _pWController = TextEditingController();
 
 // login method
@@ -99,15 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                   ? IconButton(
                       onPressed: showOrHidePw,
                       icon: Icon(
-                        Icons.visibility,
+                        Icons.visibility_off_outlined,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     )
                   : IconButton(
                       onPressed: showOrHidePw,
-                      icon: Icon(
-                        Icons.visibility_off,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                      icon: const Icon(
+                        Icons.visibility_outlined,
+                        color: Color(0xFF90CAF9),
                       ),
                     ),
             ),

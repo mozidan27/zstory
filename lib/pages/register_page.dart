@@ -176,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(right: 25),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () => Navigator.pushNamed(context, '/forgot_Pw'),
                     child: const Text('Forgot Password?'),
                   ),
                 ),

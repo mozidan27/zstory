@@ -22,7 +22,7 @@ class MyButton extends StatelessWidget {
                 text,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600),
               ),
             ),

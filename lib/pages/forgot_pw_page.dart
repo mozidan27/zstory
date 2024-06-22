@@ -63,11 +63,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             height: 50,
           ),
           // welcome page text
-          const Text(
-            'Forgot your password? Don\'t worry, I\'m here to help, please enter your email.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Text(
+              'Forgot your password? Don\'t worry, I\'m here to help, please enter your email.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
           ),
           const SizedBox(

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:zstory/pages/chat_page.dart';
 import 'package:zstory/services/auth/loginOrRegister_page.dart';
-import 'package:zstory/pages/home_page.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -13,7 +13,9 @@ class AuthGate extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? const HomePage()
+              ? ChatPage(
+                  onTap: () {},
+                )
               : const LoginOrRegisterPage();
         },
       ),

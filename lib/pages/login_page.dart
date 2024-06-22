@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Don\'t have and account? '),
+                const Text('Don\'t have an account? '),
                 GestureDetector(
                   onTap: widget.onTap,
                   child: const Text(

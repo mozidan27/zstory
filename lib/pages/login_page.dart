@@ -23,6 +23,8 @@ class _LoginPageState extends State<LoginPage> {
     // show loading cricle
     showDialog(
       context: context,
+      barrierDismissible:
+          false, // Prevent closing the dialog by clicking outside
       builder: (context) => const Center(
         child: CircularProgressIndicator(),
       ),
@@ -31,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await authService.signInWithEmailPassword(
           _emailController.text, _pWController.text);
-      Navigator.pop(context);
+      if (context.mounted) Navigator.pop(context);
     } catch (e) {
       // pop loading circle
       Navigator.pop(context);

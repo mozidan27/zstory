@@ -42,13 +42,14 @@ class _RegisterPageState extends State<RegisterPage> {
       // try creating the user
       try {
         // create the user
-        await auth.signUPWithEmailAndPassword(
-            _emailController.text, _pWController.text);
+        await auth.signUPWithEmailAndPassword(_emailController.text,
+            _pWController.text, _userNameController.text);
         // pop loading circle
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
       } catch (e) {
         // pop loading cricle
         Navigator.pop(context);
+
         // show the error message to user
         displayMessageToUser(e.toString(), context);
         // pop loading cricle

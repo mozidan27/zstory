@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zstory/helper/helper_functions.dart';
+import 'package:zstory/widgets/my_back_button.dart';
 
 class UsersPages extends StatelessWidget {
   const UsersPages({super.key});
@@ -9,11 +10,6 @@ class UsersPages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        title: const Text('users page'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 0,
-      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('users').snapshots(),
         builder: (context, snapshot) {
@@ -36,24 +32,76 @@ class UsersPages extends StatelessWidget {
           }
           // recieve data
           final users = snapshot.data!.docs;
-          return ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              // get individual user
-              final user = users[index];
+          return Column(
+            children: [
+              //back button
+              Padding(
+                padding: const EdgeInsets.only(left: 25, top: 60),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    MyBackButton(
+                      onTap: () => Navigator.pop(context),
+                    ),
+                  ],
+                ),
+              ),
 
-              // display the usersz
-              // display the users
-              String username = user.data().containsKey('username')
-                  ? user['username']
-                  : 'No username';
-              String email =
-                  user.data().containsKey('email') ? user['email'] : 'No email';
-              return ListTile(
-                title: Text(username),
-                subtitle: Text(email),
-              );
-            },
+              // list of users exites
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(top: 10),
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    // get individual user
+                    final user = users[index];
+
+                    // display the usersz
+                    // display the users
+                    String username = user.data().containsKey('username')
+                        ? user['username']
+                        : 'No username';
+                    String email = user.data().containsKey('email')
+                        ? user['email']
+                        : 'No email';
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 18),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).colorScheme.primary),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ListTile(
+                                title: Text(username),
+                                subtitle: Text(email),
+                              ),
+                            ),
+                            // user image
+                            Padding(
+                              padding: const EdgeInsets.only(right: 25),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.surface,
+                                ),
+                                child: const Icon(
+                                  Icons.person,
+                                  size: 32,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

@@ -18,7 +18,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = _authService.getCurrentUser()!;
+    // final currentUser = _authService.getCurrentUser()!;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(

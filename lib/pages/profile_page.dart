@@ -19,9 +19,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentUser = _authService.getCurrentUser()!;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile page'),
-      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: getUserDetails(),
@@ -44,11 +41,14 @@ class ProfilePage extends StatelessWidget {
           else if (snapshot.hasData) {
             // extract data
             Map<String, dynamic>? user = snapshot.data!.data(); // user data
-            return Column(
-              children: [
-                Text(user!['email'] ?? 'No email'), // email
-                Text(user['username'] ?? 'No username'), // username
-              ],
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(user!['email'] ?? 'No email'), // email
+                  Text(user['username'] ?? 'No username'), // username
+                ],
+              ),
             );
           } else {
             return const Center(

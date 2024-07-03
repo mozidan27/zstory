@@ -10,7 +10,7 @@ class UsersPages extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('users page'),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         elevation: 0,
       ),
       body: StreamBuilder(

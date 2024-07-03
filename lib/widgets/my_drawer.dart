@@ -77,6 +77,22 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.group,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                  title: const Text('U S E R S'),
+                  onTap: () {
+                    // pop the drawer
+                    Navigator.pop(context);
+                    // navigate to story page
+                    Navigator.pushNamed(context, '/users_page');
+                  },
+                ),
+              ),
             ],
           ),
 

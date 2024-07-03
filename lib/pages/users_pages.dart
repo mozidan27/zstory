@@ -8,6 +8,7 @@ class UsersPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: const Text('users page'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -41,11 +42,16 @@ class UsersPages extends StatelessWidget {
               // get individual user
               final user = users[index];
 
+              // display the usersz
               // display the users
-
+              String username = user.data().containsKey('username')
+                  ? user['username']
+                  : 'No username';
+              String email =
+                  user.data().containsKey('email') ? user['email'] : 'No email';
               return ListTile(
-                title: Text(user['username']),
-                subtitle: Text(user['email']),
+                title: Text(username),
+                subtitle: Text(email),
               );
             },
           );

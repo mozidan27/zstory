@@ -6,7 +6,7 @@ ThemeData lightMode = ThemeData(
     surface: Colors.grey.shade300, // new background name
     primary: Colors.grey.shade200,
     secondary: Colors.grey.shade400,
-    inversePrimary: Colors.grey.shade600,
+    inversePrimary: Colors.grey.shade800,
   ),
   textTheme: ThemeData.light()
       .textTheme

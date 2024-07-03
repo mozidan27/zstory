@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zstory/services/auth/auth_services.dart';
+import 'package:zstory/widgets/my_back_button.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -43,10 +44,45 @@ class ProfilePage extends StatelessWidget {
             Map<String, dynamic>? user = snapshot.data!.data(); // user data
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(user!['email'] ?? 'No email'), // email
-                  Text(user['username'] ?? 'No username'), // username
+                  //back button
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, top: 60),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        MyBackButton(
+                          onTap: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // images
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.all(30),
+                    child: const Icon(
+                      Icons.person,
+                      size: 66,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  // user name
+                  Text(
+                    user!['username'] ?? 'No username',
+                    style: const TextStyle(
+                        fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+                  // email
+                  Text(
+                    user['email'] ?? 'No email',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
                 ],
               ),
             );
